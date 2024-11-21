@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,23 +13,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        $user= User::create([
-            'name' => 'pustakawan A',
-            'email' => 'pustakawan@gmail.com',
-            'password' =>Hash::make('pustakawan')
-        ]);
-        $user->assignRole('pustakawan');
-        $user->givePermisionTo('kelola_buku');
+        User::factory()->create([
+            'name' => 'mahasiswa',
+            'email' => 'mahasiswa@unsur.ac.id',
+        ])->assignRole('mahasiswa')->givePermissionTo('view_book');
 
-        $user= User::create([
-            'name' => 'Mahasiswa B',
-            'email' => 'Mahasiswa@gmail.com',
-            'password' =>Hash::make('Mahasiswa')
-        ]);
-
-        $user->assignRole('member');
-        $user->givePermisionTo('lihat_buku');
-
+        User::factory()->create([
+            'name' => 'pustakawan',
+            'email' => 'pustakawan@unsur.ac.id',
+        ])->assignRole('pustakawan')
+        ->givePermissionTo(['edit_book','edit_user']);
     }
 }

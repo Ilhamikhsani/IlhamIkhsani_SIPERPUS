@@ -14,21 +14,11 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        Role::create([
-            'name' => 'pustakawan'
-        ]);
+        Role::create(['name' => 'pustakawan']);
+        Permission::create(['name' => 'edit_book']);
+        Permission::create(['name' => 'edit_user']);
 
-        Permission::create([
-            'name' => 'kelola_buku'
-        ]);
-
-        Role::create([
-            'name' => 'member'
-        ]);
-
-        Permission::create([
-            'member' => 'lihat_buku'    
-        ]);
+        Role::create(['name' => 'mahasiswa']);
+        Permission::create(['name' => 'view_book']);
     }
 }
